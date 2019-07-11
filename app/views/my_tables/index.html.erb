@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Tables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>My project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_tables.each do |my_table| %>
+      <tr>
+        <td><%= my_table.name %></td>
+        <td><%= my_table.my_project %></td>
+        <td><%= link_to 'Show', my_table %></td>
+        <td><%= link_to 'Edit', edit_table_path(my_table.my_project_id, my_table) %></td>
+        <td><%= link_to 'Destroy', my_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'New My Table', add_table_path %>

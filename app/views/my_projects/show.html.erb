@@ -4,6 +4,62 @@
   <strong>Name:</strong>
   <%= @my_project.name %>
 </p>
-
-<%= link_to 'Edit', edit_my_project_path(@my_project) %> |
+<% id_project = @my_project.id %>
+<%= link_to 'Nova Tabela no Projeto', add_table_path(id_project) %>
+<br><br>
+<% if @tables.count == 0 %>
+	<p>Nenhuma tabela associada</p>
+<% else %>
+	<p>Clique numa tabela para editá-la</p>
+	<% @tables.each do |t| %>
+		<a href="<%= table_path(@my_project.id, t.id) %>">
+			<table>
+				<tr>
+					<th colspan="2">
+						<%= t.name.capitalize %>
+					</th>
+				</tr>
+				<% @tuples = tableTuples t.id %>
+				<% @tuples.each do |tuple| %>
+					<tr>
+						<td class="tuple_name">
+							<%= tuple.name.downcase %>
+						</td>
+						<td class="tuple_type">
+							<%= tuple.data.downcase %>
+						</td>
+					</tr>
+				<% end #tuples %>
+			</table>
+		</a>
+		<br>
+	<% end #tables %>
+<% end #if %>
 <%= link_to 'Back', my_projects_path %>
+
+<style>
+	td, th {
+  		text-align: left;
+  		padding: 8px;
+	}
+
+	th {
+		text-align: center;
+		border-bottom: 3px solid  black;
+	}
+
+	.tuple_name {
+		font-weight: bold;
+		border-right: none;
+	}
+
+	.tuple_type {
+		border-left: none;
+	}
+
+	table {
+		color: black;
+		border-collapse: collapse;
+		border: 3px solid black;
+	}
+</style>

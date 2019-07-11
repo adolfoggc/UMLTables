@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tuple.name %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @tuple.data %>
+</p>
+
+<p>
+  <strong>My table:</strong>
+  <%= @tuple.my_table %>
+</p>
+
+<%= link_to 'Edit', edit_tuple_path(@tuple) %> |
+<%= link_to 'Back', tuples_path %>

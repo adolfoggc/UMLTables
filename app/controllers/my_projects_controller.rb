@@ -10,6 +10,7 @@ class MyProjectsController < ApplicationController
   # GET /my_projects/1
   # GET /my_projects/1.json
   def show
+    @tables = MyTable.where(my_project_id: @my_project)
   end
 
   # GET /my_projects/new
@@ -28,7 +29,7 @@ class MyProjectsController < ApplicationController
 
     respond_to do |format|
       if @my_project.save
-        format.html { redirect_to @my_project, notice: 'My project was successfully created.' }
+        format.html { redirect_to my_projects_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @my_project }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class MyProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @my_project.update(my_project_params)
-        format.html { redirect_to @my_project, notice: 'My project was successfully updated.' }
+        format.html { redirect_to my_projects_path, notice: 'My project was successfully updated.' }
         format.json { render :show, status: :ok, location: @my_project }
       else
         format.html { render :edit }
@@ -54,6 +55,7 @@ class MyProjectsController < ApplicationController
   # DELETE /my_projects/1
   # DELETE /my_projects/1.json
   def destroy
+    destroy_tables @my_project.id
     @my_project.destroy
     respond_to do |format|
       format.html { redirect_to my_projects_url, notice: 'My project was successfully destroyed.' }
@@ -71,4 +73,6 @@ class MyProjectsController < ApplicationController
     def my_project_params
       params.require(:my_project).permit(:name)
     end
+
+    
 end

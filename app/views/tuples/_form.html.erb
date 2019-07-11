@@ -1,0 +1,32 @@
+<%= form_with(model: tuple, local: true) do |form| %>
+  <% if tuple.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tuple.errors.count, "error") %> prohibited this tuple from being saved:</h2>
+
+      <ul>
+      <% tuple.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_field :data %>
+  </div>
+
+  <div class="field" style="display: none;">
+    <%= form.label :my_table_id %>
+    <%= form.text_field :my_table_id, value: params[:id_table] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

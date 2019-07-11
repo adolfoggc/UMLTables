@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <table>
+    <tr>
+      <th class="title">Projeto</th>
+      <th colspan="2"></th>
+    </tr>
+    <tr>
+      <td><%= @my_table.my_project.name %></td>
+      <td><%= link_to 'Editar', edit_my_project_path(@my_table.my_project_id) %></td>
+      <td><%= link_to 'Apagar', getProject(@my_table.my_project_id), method: :delete, data: { confirm: 'Isso apagará todas tabelas e tuplas associadas ao projeto. Tem cetreza?' } %></td>
+    </tr>
+  </table>
+</p>
+<p>
+  <table>
+    <tr>
+      <th class="title">Tabela</th>
+      <th colspan="2"></th>
+    </tr>
+    <tr>
+      <td><%= @my_table.name %></td>
+      <td><%= link_to 'Editar', edit_table_path(@my_table.my_project_id, @my_table.id) %></td>
+      <td><%= link_to 'Apagar', @my_table, method: :delete, data: { confirm: 'Todas tuplas relacionadas também serão apagadas. Deseja continuar?' } %></td>
+    </tr>
+  </table>
+</p>
+
+<p>
+  <strong>Tuplas</strong><br>
+  <% if @tuples.count == 0 %>
+  	Nenhuma tupla inserida
+  <% else %>
+    <div class="slot">
+    	<table>
+    		<tr>
+    			<th>Nome</th>
+    			<th>Tipo</th>
+    			<th colspan="2"></th>
+    		</tr>
+  	  	<% @tuples.each do |t| %>
+  	  		<tr>	
+  	  			<td style="font-weight: bold;">
+  	  				<%= t.name %>
+  	  			</td>
+  	  			<td> 
+  	  				<%= t.data %>
+  	  			</td>
+          		<td><%= link_to 'Editar', edit_tuple_path(@my_table.my_project_id, @my_table.id, t) %></td>
+          		<td><%= link_to 'Apagar', t, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	  		</tr>
+  	  	<% end %>
+    	</table>
+      
+    </div>
+
+  <% end %>
+  <p><%=link_to 'Nova Tupla', add_tuple_path(@my_table.my_project_id, @my_table.id) %></p>
+</p>
+<br><br>
+<%= link_to 'Voltar ao projeto', my_project_path(@my_table.my_project.id) %>
+
+<style>
+  table, td {
+    text-align: left;
+  }
+</style>

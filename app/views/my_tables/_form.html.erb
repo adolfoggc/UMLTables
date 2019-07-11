@@ -1,0 +1,39 @@
+<%= form_with(model: my_table, local: true) do |form| %>
+  <% if my_table.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(my_table.errors.count, "error") %> prohibited this my_table from being saved:</h2>
+
+      <ul>
+      <% my_table.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <% if params[:id_project].nil? %>
+    <div class="field">
+      <%= form.label :my_project_id %>
+      <%= form.text_field :my_project_id %>
+    </div>
+  <% else %>
+    <div class="field" style="display: none">
+      <%= form.label :my_project_id %>
+      <%= form.text_field :my_project_id, value: params[:id_project] %>
+    </div>
+  <% end %>
+  <% if params[:id_project].nil? %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= form.submit "Adicionar Tabela" %>
+    </div>
+  <% end %>
+
+<% end %>
