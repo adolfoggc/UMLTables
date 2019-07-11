@@ -1,24 +1,8 @@
-# README
+Simple application to generate simple UML database diagrams
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version: 2.5.1
+Language: Brazillian Portuguese
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+How to use:
+Just host the server and add a Project. Every project is listed on root. Choosing "Show" all related tables will appear with it tuples. Clicking on the table will let you edit it tuples, project name or table name. Simple like that

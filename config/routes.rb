@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :tuples, except: [:new, :edit, :show, :index]
   resources :my_tables, except: [:new, :edit, :show, :index]
-  resources :my_projects
+  resources :my_projects, except: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'my_projects#index'
 
