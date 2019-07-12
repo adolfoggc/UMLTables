@@ -29,7 +29,7 @@ class MyProjectsController < ApplicationController
 
     respond_to do |format|
       if @my_project.save
-        format.html { redirect_to my_projects_path, notice: 'Project was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @my_project }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class MyProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @my_project.update(my_project_params)
-        format.html { redirect_to my_projects_path, notice: 'My project was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'My project was successfully updated.' }
         format.json { render :show, status: :ok, location: @my_project }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class MyProjectsController < ApplicationController
     destroy_tables @my_project.id
     @my_project.destroy
     respond_to do |format|
-      format.html { redirect_to my_projects_url, notice: 'My project was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'My project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
